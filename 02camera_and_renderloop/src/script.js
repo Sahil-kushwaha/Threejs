@@ -21,24 +21,40 @@ const camera = new THREE.PerspectiveCamera(
   window.innerWidth / window.innerHeight,
   0.1,
   200)
+
+
+// orthographicCamera()
+// const aspectRatio = window.innerWidth/window.innerHeight
+// const camera = new THREE.OrthographicCamera(-1*aspectRatio,1*aspectRatio,1,-1,0.2,200)
+
 camera.position.z = 5
 
 // initialize the renderer
 const canvas = document.querySelector('canvas.threejs')
 const renderer = new THREE.WebGLRenderer({
-  canvas: canvas
+  canvas: canvas,
+  antialias:true
 })
+renderer.setSize(window.innerWidth, window.innerHeight)  
+// to fix the ladder pattern on the edge of object
+renderer.setPixelRatio(window.devicePixelRatio)
 
 //instantiate the controls
 const controls = new OrbitControls(camera,canvas)
-
 controls.enableDamping=true
 controls.autoRotate= true;
 // controls.enableZoom=true;
 
-renderer.setSize(window.innerWidth, window.innerHeight)
+console.log(window.devicePixelRatio)
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/innerHeight
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight)
+})
 const renderLoop = ()=>{
-  
+  // camera.aspect=window.innerWidth/innerHeight
+  // camera.updateProjectionMatrix();
+  // renderer.setSize(window.innerWidth, window.innerHeight)
   controls.update()
   renderer.render(scene, camera) 
   window.requestAnimationFrame(renderLoop)
@@ -46,3 +62,14 @@ const renderLoop = ()=>{
 }
 
 renderLoop();
+
+
+
+// Aspect Ratio Definition:
+
+// If the aspect ratio is greater than 1 (wider than tall), the canvas is wider than it is tall. This requires expanding the left and right bounds to accommodate the wider horizontal range.
+// If the aspect ratio is less than 1 (taller than wide), the canvas is taller than it is wide. In this case, we need to compress the left and right bounds.
+
+// Aspect ratio ensures that objects don’t appear squished or stretched when displayed on different screen sizes.
+
+// renderer.setSize(window.innerWidth, window.innerHeight);: This ensures that the canvas rendering area matches the new screen size after a resize.

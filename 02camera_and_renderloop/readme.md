@@ -24,3 +24,4 @@ This will start the server and open your default browser to your localhost. The 
 Callback Function: This is the function you provide to requestAnimationFrame(). The browser will call this function before it repaints the screen. This function is where you update the state of your animation, such as moving an element or changing its properties2.
 
 <mark>Next Repaint</mark>: The browser repaints the screen at regular intervals, typically matching the display’s refresh rate (e.g., 60 times per second). By using requestAnimationFrame(), your animation updates are synchronized with these repaints, resulting in smoother animations1.
+

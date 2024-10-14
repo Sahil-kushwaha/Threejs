@@ -36,7 +36,8 @@ const renderer = new THREE.WebGLRenderer({
   antialias:true
 })
 renderer.setSize(window.innerWidth, window.innerHeight)  
-// to fix the ladder pattern on the edge of object
+// to fix the ladder/jagged/staircase pattern on the edge of object
+
 renderer.setPixelRatio(window.devicePixelRatio)
 
 //instantiate the controls
@@ -45,7 +46,6 @@ controls.enableDamping=true
 controls.autoRotate= true;
 // controls.enableZoom=true;
 
-console.log(window.devicePixelRatio)
 window.addEventListener('resize',()=>{
   camera.aspect=window.innerWidth/innerHeight
   camera.updateProjectionMatrix();

@@ -20,6 +20,14 @@ const bufferattribute = new THREE.BufferAttribute(vertices,3)
 const geometry = new THREE.BufferGeometry()
 geometry.setAttribute('position',bufferattribute)
 
+// different type of primitive geometry provided by 3js
+
+// const geometry = new THREE.BoxGeometry(1,1,1,5,5,3);
+// const geometry = new THREE.SphereGeometry(1,32,9)
+// const geometry = new THREE.PlaneGeometry(1,1,3,3);
+// const geometry  = new THREE.TorusGeometry(1,)
+// const geometry  = new THREE.TorusKnotGeometry(1,0.3)
+
 const triangleMaterial = new THREE.MeshBasicMaterial({ color: "red", wireframe: true });
 const triangleMesh = new THREE.Mesh(geometry,triangleMaterial)
 scene.add(triangleMesh)
